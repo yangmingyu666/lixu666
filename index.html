@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重生玄幻选择系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding-top: 80px;
+            font-size: 18px;
+        }
+        .box {
+            width: 400px;
+            margin: 0 auto;
+            background: #222;
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #ffaa00;
+        }
+        h2 {
+            color: #ffaa00;
+            margin-bottom: 25px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: none;
+            font-size: 16px;
+            background: #333;
+            color: #fff;
+        }
+        button {
+            padding: 10px 25px;
+            margin: 8px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            background: #ffaa00;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #ffcc00;
+        }
+        .hide {
+            display: none;
+        }
+        .tip {
+            margin-top: 20px;
+            color: #ccc;
+        }
+        .success {
+            color: #00ff99;
+            font-size: 22px;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <!-- 登录页面 -->
+        <div id="loginPage">
+            <h2>请输入账号登录系统</h2>
+            <input type="text" id="accInput" placeholder="请输入账号密码">
+            <div class="tip">账号密码：<b>lixu</b></div>
+            <button onclick="login()">进入系统</button>
+        </div>
+
+        <!-- 选择人物页面 -->
+        <div id="rolePage" class="hide">
+            <h2>请选择你的人物</h2>
+            <div>
+                <button onclick="selectRole('李旭')">李旭</button>
+                <button onclick="selectRole('李九日')">李九日</button>
+                <button onclick="selectRole('木子九日')">木子九日</button>
+            </div>
+            <p class="tip" id="roleTip"></p>
+        </div>
+
+        <!-- 选择重生页面 -->
+        <div id="rebirthPage" class="hide">
+            <h2>请选择重生世界</h2>
+            <div>
+                <button onclick="selectRebirth('斗罗大陆')">选项一：斗罗大陆</button>
+                <button onclick="selectRebirth('大昌市')">选项二：大昌市</button>
+                <button onclick="selectRebirth('李火旺')">选项三：成为李火旺</button>
+            </div>
+            <p class="tip" id="rebirthTip"></p>
+        </div>
+
+        <!-- 最终结果页面 -->
+        <div id="endPage" class="hide">
+            <h2>选择完成</h2>
+            <p class="success">恭喜你，你成为了丹阳子</p>
+            <p class="success">祝你早日飞升成仙</p>
+        </div>
+    </div>
+
+    <script>
+        // 账号密码已改为 lixu
+        const setAcc = "lixu";
+
+        // 登录验证
+        function login() {
+            let acc = document.getElementById("accInput").value;
+            if(acc == setAcc){
+                document.getElementById("loginPage").classList.add("hide");
+                document.getElementById("rolePage").classList.remove("hide");
+            }else{
+                alert("账号错误，请重新输入！");
+            }
+        }
+
+        // 选择人物
+        function selectRole(name) {
+            document.getElementById("roleTip").innerText = "已选择人物：" + name + "，选择成功！";
+            setTimeout(()=>{
+                document.getElementById("rolePage").classList.add("hide");
+                document.getElementById("rebirthPage").classList.remove("hide");
+            },1200);
+        }
+
+        // 选择重生
+        function selectRebirth(world) {
+            document.getElementById("rebirthTip").innerText = "已选择重生：" + world + "，选择完成！";
+            setTimeout(()=>{
+                document.getElementById("rebirthPage").classList.add("hide");
+                document.getElementById("endPage").classList.remove("hide");
+            },1200);
+        }
+    </script>
+</body>
+</html>
